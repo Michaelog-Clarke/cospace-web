@@ -1,13 +1,8 @@
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #ffffff;
+  --text-primary: #171717;
+  color-scheme: light;
 }
 
 html {
@@ -24,7 +19,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
+  color: var(--text-primary);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -42,8 +37,74 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.siteHeader {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  color: #171717;
+}
+
+.siteHeaderInner {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 72px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.siteBrand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.brandMark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 17px;
+}
+
+.dashboardLink {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  padding: 0 14px;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.dashboardLink:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.siteBrand:focus-visible,
+.dashboardLink:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+  .siteHeaderInner {
+    min-height: 64px;
+    padding: 0 20px;
   }
 }

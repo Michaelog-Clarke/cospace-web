@@ -7,7 +7,35 @@
   box-shadow: 0 8px 24px rgb(15 23 42 / 6%);
 }
 
-.card:focus-visible {
+.cardLink {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.cardLink:hover .desk {
+  color: #2563eb;
+}
+
+.editButton {
+  margin-top: 20px;
+  padding: 7px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.editButton:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
 }
@@ -64,20 +92,4 @@
   margin: 0;
   font-size: 15px;
   font-weight: 500;
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    border-color: #333;
-    box-shadow: 0 8px 24px rgb(0 0 0 / 20%);
-  }
-
-  .details dt {
-    color: #a3a3a3;
-  }
-
-  .inactive {
-    background: #333;
-    color: #d1d5db;
-  }
 }
