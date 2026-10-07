@@ -13,6 +13,13 @@
   letter-spacing: -0.03em;
 }
 
+.errorSummary {
+  margin-bottom: 16px;
+  color: #b91c1c;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .fields {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
@@ -33,6 +40,13 @@
   font-weight: 600;
 }
 
+.fieldError {
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 .field input {
   width: 100%;
   min-height: 44px;
@@ -48,6 +62,10 @@
 .submitButton:focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #b91c1c;
 }
 
 .submitButton {
@@ -79,19 +97,5 @@
 
   .fields {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .form {
-    border-color: #333;
-  }
-
-  .field label {
-    color: #d1d5db;
-  }
-
-  .field input {
-    border-color: #4b5563;
   }
 }

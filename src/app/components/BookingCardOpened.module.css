@@ -62,11 +62,26 @@
   gap: 20px;
 }
 
+.errorSummary {
+  margin: -8px 0 0;
+  color: #b91c1c;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .field {
   display: grid;
   gap: 7px;
   font-size: 14px;
   font-weight: 600;
+}
+
+.fieldError {
+  color: #b91c1c;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .field input {
@@ -78,6 +93,10 @@
   background: var(--foreground);
   color: var(--text-primary);
   font: inherit;
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #b91c1c;
 }
 
 .field input:focus-visible,
@@ -133,16 +152,5 @@
   .backdrop,
   .sidePanel {
     animation: none;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .closeButton {
-    background: #333;
-    color: #e5e7eb;
-  }
-
-  .field input {
-    border-color: #4b5563;
   }
 }

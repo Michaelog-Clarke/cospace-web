@@ -9,18 +9,21 @@ import BookingCardOpened from "./BookingCardOpened";
 
 const initialBookings: BookingCardProps[] = [
   {
+    id: "1",
     desk: "A-12",
     floor: "2",
     date: "October 5, 2026",
     active: true,
   },
   {
+    id: "2",
     desk: "B-04",
     floor: "4",
     date: "October 6, 2026",
     active: false,
   },
   {
+    id: "3",
     desk: "C-18",
     floor: "1",
     date: "October 7, 2026",
@@ -96,7 +99,7 @@ export default function DeskBookings() {
               <BookingCard
                 key={`${booking.desk}-${booking.date}`}
                 {...booking}
-                onClick={() => setSelectedBooking(booking)}
+                onEdit={() => setSelectedBooking(booking)}
               />
             ))}
           </div>

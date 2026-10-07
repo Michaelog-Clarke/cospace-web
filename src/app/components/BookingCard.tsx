@@ -1,6 +1,8 @@
+import Link from "next/link";
 import styles from "./BookingCard.module.css";
 
 export type BookingCardProps = {
+  id?: string;
   desk: string;
   floor: string;
   date: string;
@@ -8,29 +10,51 @@ export type BookingCardProps = {
 };
 
 type BookingCardComponentProps = BookingCardProps & {
-  onClick: () => void;
+  onEdit: () => void;
 };
 
 export default function BookingCard({
+  id,
   desk,
   floor,
   date,
   active,
-  onClick,
+  onEdit,
 }: BookingCardComponentProps) {
   return (
-    <article
-      className={styles.card}
-      onClick={onClick}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          onClick();
-        }
-      }}
-      role="button"
-      tabIndex={0}
-    >
+    <article className={styles.card}>
+      {id ? (
+        <Link className={styles.cardLink} href={`/bookings/${id}`}>
+          <BookingCardDetails
+            desk={desk}
+            floor={floor}
+            date={date}
+            active={active}
+          />
+        </Link>
+      ) : (
+        <BookingCardDetails
+          desk={desk}
+          floor={floor}
+          date={date}
+          active={active}
+        />
+      )}
+      <button className={styles.editButton} type="button" onClick={onEdit}>
+        Edit booking
+      </button>
+    </article>
+  );
+}
+
+function BookingCardDetails({
+  desk,
+  floor,
+  date,
+  active,
+}: Omit<BookingCardProps, "id">) {
+  return (
+    <>
       <div className={styles.header}>
         <h2 className={styles.desk}>Desk {desk}</h2>
         <span
@@ -49,6 +73,6 @@ export default function BookingCard({
           <dd>{date}</dd>
         </div>
       </dl>
-    </article>
+    </>
   );
 }

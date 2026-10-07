@@ -1,74 +1,175 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-  --text-primary: #000;
-  --text-secondary: #666;
-
+.dashboardLayout {
   display: flex;
   flex: 1;
+  min-height: 0;
+  background: #fff;
+  color: #171717;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  z-index: 2;
+  top: 72px;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 248px;
   flex-direction: column;
+  gap: 20px;
+  padding: 28px 16px;
+  border-right: 1px solid #e5e7eb;
+  background: #fff;
+}
+
+.sidebarHeading {
+  padding: 0 12px;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sidebarNav {
+  display: grid;
+  gap: 6px;
+}
+
+.sidebarLink {
+  display: flex;
+  min-height: 44px;
   align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  gap: 12px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sidebarLink span {
+  font-size: 18px;
+}
+
+.sidebarLink:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
 }
 
 .main {
-  display: flex;
   flex: 1;
+  min-width: 0;
+  height: calc(100dvh - 72px);
+  margin-left: 248px;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.content {
   width: 100%;
-  max-width: 1080px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 40px;
-  background-color: var(--foreground);
-  padding: 72px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.intro {
+.pageHeader {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
 }
 
-.intro h1 {
-  max-width: 600px;
-  font-size: 36px;
+.eyebrow {
+  margin-bottom: 8px;
+  color: #6b7280;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -1.5px;
-  text-wrap: balance;
-  color: var(--text-primary);
 }
 
-.intro p {
-  max-width: 600px;
-  font-size: 16px;
-  line-height: 1.6;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.title {
+  font-size: 32px;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.description {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.tableSection,
+.bookingSection {
+  margin-bottom: 32px;
+}
+
+.sectionTitle {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
 }
 
 @media (max-width: 700px) {
+  .sidebar {
+    width: 176px;
+    padding: 24px 10px;
+  }
+
   .main {
-    gap: 28px;
-    padding: 48px 24px;
+    height: calc(100dvh - 72px);
+    margin-left: 176px;
+    padding: 28px 18px;
   }
 
-  .intro h1 {
-    font-size: 30px;
+  .pageHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
   }
 
+  .title {
+    font-size: 28px;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --background: #000;
-    --foreground: #111;
-    --text-primary: #ededed;
-    --text-secondary: #999;
+@media (max-width: 600px) {
+  .sidebar {
+    top: 64px;
+  }
+
+  .main {
+    height: calc(100dvh - 64px);
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 64px;
+    align-items: center;
+    padding: 20px 6px;
+  }
+
+  .sidebarHeading {
+    display: none;
+  }
+
+  .sidebarLink {
+    width: 48px;
+    justify-content: center;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
+
+  .sidebarLink span {
+    font-size: 20px;
+  }
+
+  .main {
+    margin-left: 64px;
+    padding: 24px 14px;
   }
 }

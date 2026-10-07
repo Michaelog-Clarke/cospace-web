@@ -51,17 +51,3 @@
     grid-template-columns: 1fr;
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .searchLabel {
-    color: #d1d5db;
-  }
-
-  .searchInput {
-    border-color: #4b5563;
-  }
-
-  .emptyMessage {
-    color: #a3a3a3;
-  }
-}
