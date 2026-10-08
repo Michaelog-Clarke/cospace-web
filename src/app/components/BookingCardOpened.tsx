@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { BookingCardProps } from "./BookingCard";
 import styles from "./BookingCardOpened.module.css";
 
@@ -44,6 +44,21 @@ export default function BookingCardOpened({
   const [date, setDate] = useState(toDateInputValue(booking.date));
   const [active, setActive] = useState(booking.active);
   const [errors, setErrors] = useState<BookingErrors>({});
+  const shouldFocusFirstError = useRef(false);
+
+  useEffect(() => {
+    if (!shouldFocusFirstError.current) {
+      return;
+    }
+
+    const firstInvalidField = (["desk", "floor", "date"] as const).find(
+      (field) => errors[field],
+    );
+    if (firstInvalidField) {
+      document.getElementById(`edit-booking-${firstInvalidField}`)?.focus();
+    }
+    shouldFocusFirstError.current = false;
+  }, [errors]);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -61,12 +76,7 @@ export default function BookingCardOpened({
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) {
-      const firstInvalidField = (["desk", "floor", "date"] as const).find(
-        (field) => nextErrors[field],
-      );
-      if (firstInvalidField) {
-        document.getElementById(`edit-booking-${firstInvalidField}`)?.focus();
-      }
+      shouldFocusFirstError.current = true;
       return;
     }
 
@@ -101,8 +111,16 @@ export default function BookingCardOpened({
         </div>
         <form className={styles.form} noValidate onSubmit={handleSubmit}>
           {Object.keys(errors).length > 0 && (
-            <p className={styles.errorSummary} role="alert">
-              Please correct the highlighted fields before saving.
+            <p
+              className={styles.errorSummary}
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              Please correct these errors:{" "}
+              {Object.values(errors)
+                .filter((message): message is string => Boolean(message))
+                .join(" ")}
             </p>
           )}
           <label className={styles.field}>
@@ -122,7 +140,11 @@ export default function BookingCardOpened({
               }}
             />
             {errors.desk && (
-              <span className={styles.fieldError} id="edit-booking-desk-error">
+              <span
+                className={styles.fieldError}
+                id="edit-booking-desk-error"
+                aria-live="polite"
+              >
                 {errors.desk}
               </span>
             )}
@@ -144,7 +166,11 @@ export default function BookingCardOpened({
               }}
             />
             {errors.floor && (
-              <span className={styles.fieldError} id="edit-booking-floor-error">
+              <span
+                className={styles.fieldError}
+                id="edit-booking-floor-error"
+                aria-live="polite"
+              >
                 {errors.floor}
               </span>
             )}
@@ -166,7 +192,11 @@ export default function BookingCardOpened({
               }}
             />
             {errors.date && (
-              <span className={styles.fieldError} id="edit-booking-date-error">
+              <span
+                className={styles.fieldError}
+                id="edit-booking-date-error"
+                aria-live="polite"
+              >
                 {errors.date}
               </span>
             )}

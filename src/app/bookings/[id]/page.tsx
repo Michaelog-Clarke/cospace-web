@@ -15,7 +15,7 @@ type Booking = {
 };
 
 const bookings: Record<string, Booking> = {
-  "1": {
+    "1": {
     id: "1",
     desk: "A-12",
     floor: "2",

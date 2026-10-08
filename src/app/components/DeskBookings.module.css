@@ -46,6 +46,11 @@
   color: #6b7280;
 }
 
+.errorMessage {
+  margin-top: 8px;
+  color: #b91c1c;
+}
+
 @media (max-width: 700px) {
   .bookingGrid {
     grid-template-columns: 1fr;

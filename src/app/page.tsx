@@ -1,7 +1,6 @@
 import Link from "next/link";
-import BookingsTable from "./components/BookingsTable";
+import DeskBookings from "./components/DeskBookings";
 import styles from "./page.module.css";
-//import DeskBookings from "./components/DeskBookings";
 
 export default function Home() {
   return (
@@ -27,8 +26,8 @@ export default function Home() {
               </p>
             </div>
           </header>
-          <section className={styles.tableSection} aria-label="Booking summary">
-            <BookingsTable />
+          <section className={styles.bookingSection} aria-label="Booking summary">
+            <DeskBookings />
           </section>
         </div>
       </main>

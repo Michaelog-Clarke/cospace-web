@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 import type { BookingCardProps } from "./BookingCard";
-import RegistrationForm from "./RegistrationForm";
+import CreateBookingForm from "./CreateBookingForm";
 import styles from "./BaseModal.module.css";
 
 type BaseModalProps = {
@@ -159,11 +159,8 @@ export default function BaseModal({
         </button>
         <div className={styles.content}>
           {onAddBooking ? (
-            <RegistrationForm
-              onAddBooking={(booking) => {
-                onAddBooking(booking);
-                onCloseRef.current();
-              }}
+            <CreateBookingForm
+              onAddBooking={onAddBooking}
             />
           ) : (
             children
